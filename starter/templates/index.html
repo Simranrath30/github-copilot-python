@@ -2,16 +2,50 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sudoku Game</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Sudoku Game</h1>
-  <div id="sudoku-board"></div>
-  <div class="controls">
-    <button id="new-game">New Game</button>
-    <button id="check-solution">Check Solution</button>
-    <span id="message"></span>
+  <div class="app-shell">
+    <div class="app-header">
+      <h1>Sudoku Game</h1>
+      <button id="theme-toggle" type="button" aria-pressed="false">Dark Mode</button>
+    </div>
+    <div class="board-shell">
+      <div id="sudoku-board"></div>
+    </div>
+    <div class="controls" role="group" aria-label="Game controls">
+      <div class="control-group">
+        <label class="difficulty-picker" for="difficulty">
+          Difficulty
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+      </div>
+      <div class="control-group">
+        <label class="player-name-picker" for="player-name">
+          Name
+          <input id="player-name" maxlength="20" placeholder="Player name">
+        </label>
+      </div>
+      <div class="control-group controls-buttons">
+        <button id="new-game">New Game</button>
+        <button id="check-solution">Check Solution</button>
+        <button id="hint">Hint</button>
+      </div>
+      <div class="control-group status-group">
+        <span id="timer">00:00</span>
+        <span id="message"></span>
+      </div>
+    </div>
+    <section id="leaderboard" class="leaderboard-card">
+      <h2>Top 10 Leaderboard</h2>
+      <ol id="leaderboard-list"></ol>
+    </section>
   </div>
   <script src="/static/main.js"></script>
 </body>
