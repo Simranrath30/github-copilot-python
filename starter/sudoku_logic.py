@@ -130,6 +130,12 @@ def resolve_clue_count(clues=35, difficulty=None):
         return 35
     return clues
 
+# Copilot suggested extracting the filled-cell counting logic into a helper.
+# I reviewed the suggestion and simplified the implementation using Python's
+# built-in sum() to improve readability while preserving the same behavior.
+def count_filled_cells(board):
+    """Return the number of filled cells in the Sudoku board."""
+    return sum(cell != EMPTY for row in board for cell in row)
 
 def generate_puzzle(clues=35, difficulty=None):
     """Generate a puzzle and its matching solution."""
@@ -142,7 +148,7 @@ def generate_puzzle(clues=35, difficulty=None):
     cells = [(row, col) for row in range(SIZE) for col in range(SIZE)]
     random.shuffle(cells)
 
-    while sum(cell != EMPTY for row in puzzle for cell in row) > target_clues:
+    while count_filled_cells(puzzle) > target_clues:
         removed = False
         for row, col in cells:
             if puzzle[row][col] == EMPTY:
